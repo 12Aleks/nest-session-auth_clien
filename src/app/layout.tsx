@@ -31,7 +31,7 @@ export default function RootLayout({
         />
 
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <div className="container-fluid">
           <div className="row">
               {children}

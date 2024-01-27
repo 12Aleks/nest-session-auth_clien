@@ -3,10 +3,12 @@ import {useState, ChangeEvent} from "react";
 export const useInput = (payload: string) => {
     const [value, setValue] = useState<string>('');
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        e.stopPropagation();
-        setValue(e.target.value);
+    const onChange = (e?: ChangeEvent<HTMLInputElement>) => {
+       e?.stopPropagation();
+       e ? setValue(e.target.value): setValue('')
     }
+
+
 
     return {value, onChange}
 }

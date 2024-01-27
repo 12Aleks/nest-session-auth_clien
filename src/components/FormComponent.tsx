@@ -1,6 +1,7 @@
 "use client"
 import React, {useState} from 'react';
 import {useInput} from "@/hooks/useInput";
+import {loginUser} from "@/services/auth.services";
 
 const FormComponent = () => {
     const name = useInput('');
@@ -9,13 +10,17 @@ const FormComponent = () => {
     const [isRegistration, setIsRegistration] = useState<boolean>(false);
 
     function registration(e: React.MouseEvent<HTMLButtonElement>){
-        e.stopPropagation();
+        e.preventDefault();
         console.log('Registraton')
     }
 
-    function login(e: React.MouseEvent<HTMLButtonElement>){
-        e.stopPropagation();
+    async function login(e: React.MouseEvent<HTMLButtonElement>){
+        e.preventDefault();
+        let {data} = await loginUser({email: email.value, password: password.value});
+        console.log(data)
         console.log('Login')
+        email.onChange()
+        password.onChange()
     }
 
     return (
@@ -30,7 +35,7 @@ const FormComponent = () => {
                                     <div className="col-md-7 pe-0">
                                         <div className="form-left h-100 py-5 px-5">
                                             <form action="" className="row g-4">
-                                                <div className="col-12">
+                                                {isRegistration &&  <div className="col-12">
                                                     <label>Username<span className="text-danger">*</span></label>
                                                     <div className="input-group">
                                                         <div className="input-group-text"><i className="bi bi-person-fill"></i></div>
@@ -40,9 +45,9 @@ const FormComponent = () => {
                                                                {...name}
                                                         />
                                                     </div>
-                                                </div>
-
-                                                {isRegistration &&  <div className="col-12">
+                                                  </div>
+                                                }
+                                                 <div className="col-12">
                                                     <label>Email<span className="text-danger">*</span></label>
                                                     <div className="input-group">
                                                         <div className="input-group-text"><i className="bi bi-lock-fill"></i></div>
@@ -53,7 +58,7 @@ const FormComponent = () => {
                                                         />
                                                     </div>
                                                 </div>
-                                                }
+
 
                                                 <div className="col-12">
                                                     <label>Password<span className="text-danger">*</span></label>
@@ -73,10 +78,14 @@ const FormComponent = () => {
                                                 </div>
 
                                                 <div className="col-12">
-                                                    <button type="submit"
+                                                    { isRegistration ? <button
+                                                            type="submit"
                                                             className="btn btn-primary px-4 float-end mt-4"
-                                                            onClick={ isRegistration? registration: login}
-                                                    >{!isRegistration? 'Login': 'Registration'}</button>
+                                                            onClick={registration}>Registration</button>
+                                                    : <button type="submit"
+                                                            className="btn btn-primary px-4 float-end mt-4"
+                                                            onClick={login}>Login</button>
+                                                    }
                                                 </div>
                                             </form>
                                         </div>
@@ -95,7 +104,6 @@ const FormComponent = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
