@@ -2,11 +2,14 @@
 import React, {useState} from 'react';
 import {useInput} from "@/hooks/useInput";
 import {loginUser} from "@/services/auth.services";
-
+import { useRouter } from 'next/navigation'
+const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME
 const FormComponent = () => {
+    const router = useRouter()
     const name = useInput('');
     const email = useInput('');
     const password = useInput('');
+
     const [isRegistration, setIsRegistration] = useState<boolean>(false);
 
     function registration(e: React.MouseEvent<HTMLButtonElement>){
@@ -21,6 +24,8 @@ const FormComponent = () => {
         console.log('Login')
         email.onChange()
         password.onChange()
+        data && router.push(`${HOST_NAME}/`)
+
     }
 
     return (
@@ -74,24 +79,24 @@ const FormComponent = () => {
 
 
                                                 <div className="col-sm-12">
-                                                    <p className="float-end text-primary pointer" onClick={() => setIsRegistration(!isRegistration)}>{isRegistration? 'Login': 'Registration'}</p>
+                                                    <p className="float-end text-dark pointer" onClick={() => setIsRegistration(!isRegistration)}>{isRegistration? 'Login': 'Registration'}</p>
                                                 </div>
 
-                                                <div className="col-12">
+                                                <div className="col-12 mb-4">
                                                     { isRegistration ? <button
                                                             type="submit"
-                                                            className="btn btn-primary px-4 float-end mt-4"
+                                                            className="btn btn-dark px-4 float-end"
                                                             onClick={registration}>Registration</button>
                                                     : <button type="submit"
-                                                            className="btn btn-primary px-4 float-end mt-4"
+                                                            className="btn btn-dark px-4 float-end"
                                                             onClick={login}>Login</button>
                                                     }
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div className="col-md-5 ps-0 d-none d-md-block">
-                                        <div className="form-right h-100 bg-primary text-white text-center pt-5 ps-3 pe-3 pb-3" >
+                                    <div className="col-md-5 ps-0 d-none d-md-block ">
+                                        <div className="form-right h-100 bg-dark text-white text-center pt-5 ps-3 pe-3 pb-3 bg_img" >
                                             <i className="bi bi-bootstrap"></i>
                                             <h2 className="fs-2">Welcome, this is test project.</h2>
                                             <p>NestJS: Session Authentication</p>
