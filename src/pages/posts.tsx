@@ -1,5 +1,7 @@
-import {FC} from 'react';
+import {FC, useEffect, useState} from 'react';
 import axios from "axios";
+import {IPost} from "@/utils/types";
+import PostItem from "@/components/PostItem";
 
 const HOST = process.env.NEXT_PUBLIC_HOST_NAME;
 
@@ -7,14 +9,20 @@ interface PostsProps {
     posts: IPost[];
 }
 
-const Posts:FC<PostsProps> = (posts) => {
+const Posts:FC<PostsProps> = ({ posts }) => {
+    const [localPosts, setLocalPosts] = useState<IPost[]>([]);
 
-    console.log(posts)
+    useEffect(() => {
+        posts && setLocalPosts(posts);
+    }, [posts]);
 
     return (
 
         <main>
            <h1>Posts</h1>
+            { localPosts?.map((post) =>
+                <PostItem post={post} key={post.title} />
+            )}
         </main>
 
     );
