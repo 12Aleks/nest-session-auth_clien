@@ -3,6 +3,7 @@ export interface IPostUser{
     username: string
 }
 export interface IPost{
+    id: number,
     title: string,
     description: string,
     create_post_At: string,

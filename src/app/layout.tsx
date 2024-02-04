@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import "@/styles/main.scss";
+import { Lato } from 'next/font/google'
+import "@/styles/globals.scss";
 
 // Script component
 import Script from "next/script";
 
 // google font
-const inter = Inter({ subsets: ['latin'] });
+const lato = Lato({
+    subsets: ['latin'],
+    weight: ['100', '300', '400', '700', '900']
+});
 
 
 // SEO
@@ -31,7 +34,7 @@ export default function RootLayout({
         />
 
       </head>
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body className={lato.className} suppressHydrationWarning={true}>
         <div className="container-fluid">
           <div className="row">
               {children}

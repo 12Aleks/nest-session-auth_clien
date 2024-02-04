@@ -1,6 +1,5 @@
 import FormComponent from '@/components/FormComponent'
 
-
 export default function Home() {
 
 
