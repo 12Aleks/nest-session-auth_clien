@@ -2,7 +2,7 @@
 import {FC} from 'react';
 import {IPost} from "@/utils/types";
 import {useRouter} from "next/navigation";
-
+import styles from '@/styles/posts.module.scss'
 interface PostItemProps {
     post: IPost;
 }
@@ -16,7 +16,7 @@ const PostItem: FC<PostItemProps>  = ({ post }) => {
     }
 
     return (
-        <div className="post_wrapper pointer" onClick={() => router.push(`/posts/${post.id}`)}>
+        <div className={`${styles.post_wrapper} wrapper`} onClick={() => router.push(`/posts/${post.id}`)}>
             <h2 className="fw-bolder mb-1">{post.title}</h2>
             <div className="text-muted fst-italic mb-2">Posted on: { formatDate(post.create_post_At)}</div>
             <p className="fs-5 mb-4">{post.description}</p>

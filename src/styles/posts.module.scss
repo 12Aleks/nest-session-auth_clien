@@ -1,0 +1,29 @@
+.post_wrapper{
+  width: 100%;
+  max-width: 1000px;
+  min-height: 200px;
+  max-height: 500px;
+  h2{
+    font: 600 clamp(1rem, 1.4rem, 1.5rem) Lato, sans-serif;
+    margin: 10px 0;
+  }
+  h4{
+    font: 600 clamp(.875rem, 1rem, 1rem) Lato, sans-serif;
+    margin: 15px 0;
+  }
+  p{
+    margin: 10px 0;
+    color: rgb(82, 80, 80);
+    font: 300 clamp(.875rem, 1rem, 1rem) Lato, sans-serif;
+    letter-spacing: 1px;
+    word-break: break-all;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
