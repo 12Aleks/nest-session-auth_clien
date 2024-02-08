@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {IPost} from "@/utils/types";
 import PostItem from "@/components/PostItem";
 import FormCreatePost from "@/components/FormCreatePost";
-import {getPostsData} from "@/app/posts/utils";
+import {getPostsData} from "@/actions/post.actions";
 
 
 export default function PostsPage() {
@@ -27,8 +27,8 @@ export default function PostsPage() {
             <div className="row">
 
                 <div className="col-md-6">
-                    {localPosts?.map((post) =>
-                        <PostItem post={post} key={post.title}/>
+                    {localPosts?.map((post, index) =>
+                        <PostItem post={post} key={post.title + index}/>
                     )}
                 </div>
                 <FormCreatePost/>

@@ -1,12 +1,15 @@
-import React from 'react';
+import {MouseEvent} from 'react';
 import {useInput} from "@/hooks/useInput";
+import {createPost} from "@/actions/post.actions";
 
 const FormCreatePost = () => {
     const title = useInput('');
     const description = useInput('');
 
-    function createPost() {
-
+    async function createNewPost(e: MouseEvent<HTMLButtonElement>) {
+       e.preventDefault();
+       let data = {title: title.value, description: description.value}
+       const post = await createPost(data)
     }
 
 
@@ -41,7 +44,7 @@ const FormCreatePost = () => {
                     <div className="col-12 mb-4">
                         <button type="submit"
                                 className="btn btn-dark px-4 float-end"
-                                onClick={(e) => createPost()}>Create post
+                                onClick={(e) => createNewPost(e)}>Create post
                         </button>
                     </div>
                 </form>

@@ -1,8 +1,9 @@
 "use client"
 import React, {useState} from 'react';
 import {useInput} from "@/hooks/useInput";
-import {loginUser} from "@/services/auth.services";
+import {loginUser} from "@/actions/auth.actions";
 import { useRouter } from 'next/navigation'
+
 const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME
 const FormComponent = () => {
     const router = useRouter()
@@ -19,12 +20,12 @@ const FormComponent = () => {
 
     async function login(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault();
-        let {data} = await loginUser({email: email.value, password: password.value});
+        let data = await loginUser({email: email.value, password: password.value});
         console.log(data)
         console.log('Login')
         email.onChange()
         password.onChange()
-        data && router.push(`${HOST_NAME}/`)
+        data && router.push(`${HOST_NAME}/posts`)
 
     }
 

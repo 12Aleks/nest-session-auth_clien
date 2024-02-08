@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import {getServerSideProps} from "@/app/posts/utils";
+import {getServerSideProps} from "@/actions/post.actions";
 
 export default async function PostPage({ params }: { params: { id: string } }) {
     try{
