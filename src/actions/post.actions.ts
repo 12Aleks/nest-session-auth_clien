@@ -6,8 +6,12 @@ import {cookies} from "next/headers";
 const HOST = process.env.NEXT_PUBLIC_SERVER_HOST_NAME;
 
 const instance = axios.create({
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+    baseURL: HOST,
     withCredentials: true,
-    baseURL: HOST
 })
 export async function getServerSideProps(id: string): Promise<IPost>
 {

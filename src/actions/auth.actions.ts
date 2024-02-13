@@ -10,12 +10,22 @@ interface loginData{
 }
 
 
-const HOST_NAME = process.env.NEXT_PUBLIC_SERVER_HOST_NAME
+const HOST = process.env.NEXT_PUBLIC_SERVER_HOST_NAME;
+
+const instance = axios.create({
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+    baseURL: HOST,
+    withCredentials: true,
+})
 
 export async function loginUser (userData: loginData): Promise<loginData>  {
-   const {data} =  await axios.post(`${HOST_NAME}/api/auth/login` , userData);
-   cookies().set(`user_id`, data.id);
-   return data
+   const response =  await instance.post(`/api/auth/login` , userData);
+   console.log(response)
+   cookies().set(`user_id`, response.data.id);
+   return response.data
 }
 
 

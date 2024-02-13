@@ -21,11 +21,9 @@ const FormComponent = () => {
     async function login(e: React.MouseEvent<HTMLButtonElement>){
         e.preventDefault();
         let data = await loginUser({email: email.value, password: password.value});
-        console.log(data)
-        console.log('Login')
-        email.onChange()
-        password.onChange()
-        data && router.push(`${HOST_NAME}/posts`)
+        // email.onChange()
+        // password.onChange()
+        // data && router.push(`${HOST_NAME}/posts`)
 
     }
 
