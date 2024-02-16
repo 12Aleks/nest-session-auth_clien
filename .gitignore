@@ -16,6 +16,9 @@
 # production
 /build
 
+
+/src/cert/localhost-key.pem
+/src/cert/localhost.pem
 # misc
 .DS_Store
 *.pem

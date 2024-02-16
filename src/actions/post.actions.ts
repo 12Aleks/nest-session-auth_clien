@@ -3,15 +3,18 @@ import {IPost} from "@/utils/types";
 import axios from "axios";
 import {cookies} from "next/headers";
 
-const HOST = process.env.NEXT_PUBLIC_SERVER_HOST_NAME;
+//test configuration for server https
+process.env.NODE_EXTRA_CA_CERTS = '/path/to/ca.crt';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
+const HOST = process.env.NEXT_PUBLIC_SERVER_HOST_NAME;
+axios.defaults.withCredentials = true;
 const instance = axios.create({
     headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
     },
-    baseURL: HOST,
-    withCredentials: true,
+    baseURL: HOST
 })
 export async function getServerSideProps(id: string): Promise<IPost>
 {
